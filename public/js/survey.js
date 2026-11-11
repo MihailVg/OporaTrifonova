@@ -383,6 +383,7 @@ function bindInputs() {
       form.hidden = true;
       if (banner) banner.hidden = true;
       if (successPanel) successPanel.hidden = false;
+      qs('[data-success-title]')?.focus({ preventScroll: true });
       const message = qs('[data-success-message]');
       if (message) {
         message.textContent = result.updated
