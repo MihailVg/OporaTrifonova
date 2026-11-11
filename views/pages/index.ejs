@@ -1,0 +1,404 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<section class="hero">
+  <div class="container hero__grid">
+    <div class="hero__copy" data-reveal>
+      <p class="eyebrow"><span class="eyebrow__dot"></span> Онлайн-поликлиника после мастэктомии</p>
+      <h1 class="hero__title">Жизнь после<br>операции — <em>без боли</em><br>и одиночества.</h1>
+      <p class="hero__lead">После мастэктомии боль в груди, подмышке или руке может сохраняться месяцами. Это не значит, что нужно просто терпеть: нейропатическую боль можно лечить, а дневник помогает врачу видеть, что именно работает.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="/cabinet">
+          Начать дневник
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="/info">О заболевании</a>
+      </div>
+      <ul class="hero__trust" role="list">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> 5 минут в день</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg> Врач видит динамику</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg> Данные — под защитой</li>
+      </ul>
+    </div>
+
+    <div class="hero__art" aria-hidden="true">
+      <div class="hero-art__halo"></div>
+      <div class="hero-art__ring"></div>
+      <div class="hero-art__ring hero-art__ring--two"></div>
+      <div class="hero-art__spark hero-art__spark--one"></div>
+      <div class="hero-art__spark hero-art__spark--two"></div>
+
+      <div class="phone-card">
+        <div class="phone-card__top">
+          <span class="phone-card__brand">Опора</span>
+          <span class="phone-card__date">11 ноября</span>
+        </div>
+        <p class="phone-card__label">Боль сегодня</p>
+        <div class="phone-card__pain">
+          <strong>4</strong><span>/10</span>
+          <span class="pill pill--soft"><svg class="icon" aria-hidden="true"><use href="#i-trend-down"></use></svg> −2 за неделю</span>
+        </div>
+
+        <svg class="phone-card__chart" viewBox="0 0 300 96" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="heroArea" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#D95845" stop-opacity=".26"/>
+              <stop offset="100%" stop-color="#D95845" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 29 L25 31 L50 28 L75 33 L100 31 L125 36 L150 34 L175 39 L200 37 L225 44 L250 42 L275 50 L296 55 L296 96 L0 96 Z" fill="url(#heroArea)"/>
+          <path d="M0 29 L25 31 L50 28 L75 33 L100 31 L125 36 L150 34 L175 39 L200 37 L225 44 L250 42 L275 50 L296 55" fill="none" stroke="#C8523F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="296" cy="55" r="4.5" fill="#FAF7F1" stroke="#C8523F" stroke-width="2.5"/>        </svg>
+
+        <div class="phone-card__metrics">
+          <div><span>Сон</span><strong>6,5 ч</strong></div>
+          <div><span>Обезболивающее</span><strong>1 раз</strong></div>
+          <div><span>Активность</span><strong>7/10</strong></div>
+        </div>
+
+        <div class="phone-card__alarm">
+          <span class="phone-card__alarm-icon"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg></span>
+          <span><strong>Срочно болит</strong><small>сообщение врачу</small></span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </div>
+      </div>
+
+      <div class="float-card float-card--doctor">
+        <span class="avatar-mini">АМ</span>
+        <span class="float-card__text"><strong><%= site.doctor.name %></strong><small>врач на связи</small></span>
+        <span class="status-dot status-dot--green"></span>
+      </div>
+
+      <div class="float-card float-card--sent">
+        <span class="float-card__check"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></span>
+        <span class="float-card__text"><strong>Сигнал доставлен</strong><small>11 ноября, 08:42</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--symptoms" id="about">
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div data-reveal>
+        <p class="eyebrow"><span class="eyebrow__dot"></span> После операции</p>
+        <h2 class="section-title">Боль, которая не проходит, — <em>не «норма»</em>.</h2>
+      </div>
+      <p class="section-lead" data-reveal>После удаления молочной железы и лимфоузлов могут повреждаться нервы. Так возникает постмастэктомическая нейропатия, а при вовлечении плечевого сплетения — плексопатия. Это не про характер и не про слабость: это состояние, которое нужно диагностировать и лечить.</p>
+    </div>
+
+    <div class="symptom-grid">
+      <article class="symptom-card" data-reveal>
+        <span class="symptom-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-activity"></use></svg></span>
+        <h3>Жжение и прострелы</h3>
+        <p>Боль отдаёт в руку, усиливается ночью или от прикосновения к коже. Иногда похожа на удар током.</p>
+      </article>
+      <article class="symptom-card" data-reveal>
+        <span class="symptom-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-hand"></use></svg></span>
+        <h3>Онемение и слабость</h3>
+        <p>Немеют пальцы, трудно поднять руку, удержать чашку или расчесаться. Это влияет на быт и настроение.</p>
+      </article>
+      <article class="symptom-card" data-reveal>
+        <span class="symptom-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg></span>
+        <h3>Скованность и отёк</h3>
+        <p>Плечо двигается с трудом, рука отекает. Отёк и боль важно замечать раньше, чтобы не запустить процесс.</p>
+      </article>
+    </div>
+
+    <div class="note-strip" data-reveal>
+      <p><strong>С этим можно работать.</strong> Диагностика, физиотерапия, лекарства и реабилитация помогают уменьшить боль и вернуть подвижность. Начните с понятного разговора о симптомах.</p>
+      <a class="text-link" href="/info">Как устроено лечение <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand" id="diary">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow"><span class="eyebrow__dot"></span> Ежедневный дневник</p>
+      <h2 class="section-title">Пять минут утром — и врачу видна вся картина.</h2>
+      <p class="section-lead section-lead--center">Не нужно вспоминать, что было неделю назад. Короткие отметки складываются в понятную динамику: боль, сон, препараты и побочные эффекты.</p>
+    </div>
+
+    <div class="steps">
+      <article class="step" data-reveal>
+        <span class="step__num">01</span>
+        <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
+        <h3>Заполните дневник</h3>
+        <p>11 вопросов о боли, движении и лечении. Занимает около пяти минут — можно с телефона.</p>
+      </article>
+      <article class="step" data-reveal>
+        <span class="step__num">02</span>
+        <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg></span>
+        <h3>Врач видит динамику</h3>
+        <p>Графики боли, сна и эффективности препаратов вместо разрозненных воспоминаний.</p>
+      </article>
+      <article class="step" data-reveal>
+        <span class="step__num">03</span>
+        <span class="step__icon"><svg class="icon" aria-hidden="true"><use href="#i-stethoscope"></use></svg></span>
+        <h3>Лечение корректируется</h3>
+        <p>Если препарат не помогает или появляются побочные эффекты, это видно вовремя — и можно обсудить изменения.</p>
+      </article>
+    </div>
+
+    <div class="feature-split" data-reveal>
+      <div class="feature-panel">
+        <div class="feature-panel__head">
+          <div>
+            <p class="feature-panel__eyebrow">Динамика боли</p>
+            <p class="feature-panel__title">Последние 14 дней</p>
+          </div>
+          <span class="pill pill--soft">−2 балла</span>
+        </div>
+        <div class="chart-legend">
+          <span><i class="legend-dot legend-dot--coral"></i> Средняя</span>
+          <span><i class="legend-dot legend-dot--sage"></i> Максимальная</span>
+        </div>
+        <svg class="feature-chart" viewBox="0 0 620 220" role="img" aria-label="График: средняя боль снизилась с 7 до 5 баллов за две недели">
+          <defs>
+            <linearGradient id="featureArea" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#D95845" stop-opacity=".2"/>
+              <stop offset="100%" stop-color="#D95845" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="chart-grid">
+            <line x1="0" y1="20" x2="620" y2="20"/><line x1="0" y1="70" x2="620" y2="70"/>
+            <line x1="0" y1="120" x2="620" y2="120"/><line x1="0" y1="170" x2="620" y2="170"/>
+          </g>
+          <path d="M0 74 L48 67 L95 78 L143 72 L191 85 L239 81 L286 94 L334 88 L382 101 L429 96 L477 108 L525 103 L572 114 L620 110 L620 220 L0 220 Z" fill="url(#featureArea)"/>
+          <path d="M0 74 L48 67 L95 78 L143 72 L191 85 L239 81 L286 94 L334 88 L382 101 L429 96 L477 108 L525 103 L572 114 L620 110" fill="none" stroke="#C8523F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M0 38 L48 33 L95 42 L143 36 L191 49 L239 43 L286 56 L334 51 L382 61 L429 56 L477 67 L525 61 L572 70 L620 67" fill="none" stroke="#8DAA9A" stroke-width="2" stroke-dasharray="6 7" stroke-linecap="round"/>
+          <circle cx="620" cy="110" r="5" fill="#FAF7F1" stroke="#C8523F" stroke-width="3"/>
+        </svg>
+        <div class="feature-panel__foot">
+          <span>Сон: 5,5 → 7,5 ч</span>
+          <span>Побочные эффекты: меньше</span>
+        </div>
+      </div>
+      <div class="feature-copy">
+        <p class="eyebrow"><span class="eyebrow__dot"></span> Что видит врач</p>
+        <h3>Не «стало легче», а конкретные данные.</h3>
+        <p>В кабинете врача — графики по каждому пациенту, история препаратов и отметки о побочных эффектах. Это помогает обсуждать лечение предметно, а не по памяти.</p>
+        <ul class="check-list">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Средняя и максимальная боль, ночные пробуждения</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Сон, настроение и повседневная активность</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Препараты, дозы и эффективность</li>
+        </ul>
+        <a class="btn btn--secondary" href="/cabinet">Посмотреть дневник <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark alarm-section" id="alarm">
+  <div class="container alarm-section__grid">
+    <div class="alarm-section__copy" data-reveal>
+      <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> Тревожная кнопка</p>
+      <h2>Когда боль сильнее, чем можно терпеть, помощь не должна ждать до утра.</h2>
+      <p>Одно нажатие в дневнике — и врачу уходит сообщение с вашим именем, уровнем боли и временем. Сигнал сохраняется в кабинете врача, даже если мессенджер недоступен.</p>
+      <ul class="check-list check-list--light">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Имя, уровень боли и комментарий</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Уведомление в Telegram врача</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Отметка в истории пациента</li>
+      </ul>
+      <a class="btn btn--coral btn--lg" href="/cabinet">
+        <svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg>
+        Открыть тревожную кнопку
+      </a>
+      <p class="alarm-section__note">Это не служба экстренной помощи. Если состояние угрожает жизни — звоните <a href="tel:103">103</a> или <a href="tel:112">112</a>.</p>
+    </div>
+
+    <div class="alarm-visual" data-reveal aria-hidden="true">
+      <div class="alarm-visual__glow"></div>
+      <div class="alarm-phone">
+        <div class="alarm-phone__status"><span>9:41</span><span>Опора</span><span>5G</span></div>
+        <div class="alarm-phone__lock">Тревожный сигнал</div>
+        <div class="alarm-pulse">
+          <span class="alarm-pulse__ring"></span>
+          <span class="alarm-pulse__ring alarm-pulse__ring--two"></span>
+          <span class="alarm-pulse__core"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg></span>
+        </div>
+        <p class="alarm-phone__hint">Нажмите, если боль<br>сильнее обычного</p>
+        <div class="alarm-phone__button">Срочно болит</div>
+      </div>
+      <article class="tg-message">
+        <div class="tg-message__head">
+          <span class="tg-message__avatar">О</span>
+          <span><strong>Опора · уведомления</strong><small>только что</small></span>
+          <svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg>
+        </div>
+        <p class="tg-message__title">🚨 Тревожный сигнал</p>
+        <dl class="tg-message__details">
+          <div><dt>Пациент</dt><dd>Мария Иванова</dd></div>
+          <div><dt>Боль</dt><dd>9/10</dd></div>
+          <div><dt>Время</dt><dd>11 ноября, 06:42</dd></div>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="doctor">
+  <div class="container">
+    <div class="doctor-card" data-reveal>
+      <div class="doctor-card__portrait" aria-hidden="true">
+        <div class="doctor-card__pattern"></div>
+        <span class="doctor-card__initials">АМ</span>
+        <span class="doctor-card__badge"><svg class="icon" aria-hidden="true"><use href="#i-heart"></use></svg> рядом</span>
+      </div>
+      <div class="doctor-card__copy">
+        <p class="eyebrow"><span class="eyebrow__dot"></span> Ваш врач</p>
+        <h2><%= site.doctor.name %></h2>
+        <p class="doctor-card__role"><%= site.doctor.role %> · <%= site.doctor.experience %></p>
+        <blockquote>«<%= site.doctor.quote %>»</blockquote>
+        <p>Специализируется на хронической боли и реабилитации после операций. Ведёт пациенток с постмастэктомической нейропатией и плексопатией, помогает подобрать лечение и мягко вернуть движение.</p>
+        <div class="doctor-card__tags">
+          <span>Неврология</span><span>Лечение боли</span><span>Реабилитация</span>
+        </div>
+        <div class="doctor-card__actions">
+          <a class="btn btn--primary" href="#feedback">Написать врачу</a>
+          <a class="btn btn--ghost" href="<%= site.contacts.telegramUrl %>" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg> Telegram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand" id="knowledge">
+  <div class="container">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot"></span> Полезно знать</p>
+        <h2 class="section-title">Понятно о том, что происходит.</h2>
+      </div>
+      <p class="section-lead">Без пугающих формулировок и обещаний. Только то, что помогает принимать решения и задавать врачу правильные вопросы.</p>
+    </div>
+
+    <div class="knowledge-grid">
+      <a class="knowledge-card" href="/info#what" data-reveal>
+        <span class="knowledge-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-brain"></use></svg></span>
+        <h3>Что такое нейропатия и плексопатия</h3>
+        <p>Почему после операции возникают жжение, онемение и слабость — и чем отличаются разные варианты.</p>
+        <span class="knowledge-card__link">Читать <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+      </a>
+      <a class="knowledge-card" href="/info#treatment" data-reveal>
+        <span class="knowledge-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-pill"></use></svg></span>
+        <h3>Лечение и реабилитация</h3>
+        <p>Какие подходы используют при нейропатической боли и как восстановление встроить в обычную жизнь.</p>
+        <span class="knowledge-card__link">Читать <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+      </a>
+      <a class="knowledge-card knowledge-card--alert" href="/info#when" data-reveal>
+        <span class="knowledge-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+        <h3>Когда звонить 103</h3>
+        <p>Красные флаги, при которых нельзя ждать ответа в чате: резкая слабость, температура, отёк, боль в груди.</p>
+        <span class="knowledge-card__link">Что делать <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="feedback">
+  <div class="container contact-grid">
+    <div class="contact-info" data-reveal>
+      <p class="eyebrow"><span class="eyebrow__dot"></span> Связаться</p>
+      <h2 class="section-title">Мы рядом — в рабочие часы и в экстренной ситуации.</h2>
+      <p class="section-lead">Напишите, если остались вопросы о дневнике, лечении или записи. Срочные сигналы лучше отправлять через кнопку в дневнике — так врач увидит их в первую очередь.</p>
+
+      <dl class="contact-list">
+        <div>
+          <dt><svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg> Телефон</dt>
+          <dd><a href="tel:<%= site.contacts.phoneHref %>"><%= site.contacts.phone %></a></dd>
+        </div>
+        <div>
+          <dt><svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg> Telegram</dt>
+          <dd><a href="<%= site.contacts.telegramUrl %>" target="_blank" rel="noopener noreferrer">@<%= site.contacts.telegram %></a></dd>
+        </div>
+        <div>
+          <dt><svg class="icon" aria-hidden="true"><use href="#i-mail"></use></svg> Почта</dt>
+          <dd><a href="mailto:<%= site.contacts.email %>"><%= site.contacts.email %></a></dd>
+        </div>
+        <div>
+          <dt><svg class="icon" aria-hidden="true"><use href="#i-clock"></use></svg> Часы работы</dt>
+          <dd class="contact-list__hours">
+            <% site.contacts.hours.forEach((item) => { %>
+              <span><%= item.days %> — <%= item.time %></span>
+            <% }) %>
+          </dd>
+        </div>
+      </dl>
+
+      <div class="emergency-box">
+        <span class="emergency-box__icon"><svg class="icon" aria-hidden="true"><use href="#i-alert"></use></svg></span>
+        <div>
+          <strong>Если нужна срочная помощь</strong>
+          <p><%= site.emergency.text %></p>
+          <div class="emergency-box__numbers">
+            <a href="tel:103">103 <small>скорая</small></a>
+            <a href="tel:112">112 <small>единый номер</small></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form class="feedback-form card" data-feedback-form novalidate data-reveal>
+      <div class="feedback-form__head">
+        <span class="feedback-form__icon"><svg class="icon" aria-hidden="true"><use href="#i-message"></use></svg></span>
+        <div>
+          <h2>Задать вопрос</h2>
+          <p>Ответим в рабочие часы. Обычно — в течение 1–2 часов.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="feedback-name">Как вас зовут</label>
+        <input class="input" id="feedback-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Имя и фамилия" required>
+        <p class="field__error" data-error-for="name"></p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="feedback-contact">Телефон, e-mail или Telegram</label>
+        <input class="input" id="feedback-contact" name="contact" type="text" autocomplete="tel" maxlength="120" placeholder="Как с вами связаться" required>
+        <p class="field__error" data-error-for="contact"></p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="feedback-message">Сообщение</label>
+        <textarea class="input textarea" id="feedback-message" name="message" rows="4" maxlength="2000" placeholder="Чем мы можем помочь?" required></textarea>
+        <p class="field__hint">Не отправляйте здесь срочные сообщения — для этого есть тревожная кнопка и 103.</p>
+        <p class="field__error" data-error-for="message"></p>
+      </div>
+
+      <label class="checkbox checkbox--consent">
+        <input type="checkbox" name="consent" required>
+        <span>Согласен(на) на обработку персональных данных и принимаю <a href="/privacy" target="_blank" rel="noopener">политику</a> и <a href="/consent" target="_blank" rel="noopener">согласие</a>.</span>
+      </label>
+      <p class="field__error" data-error-for="consent"></p>
+
+      <div class="hp-field" aria-hidden="true">
+        <label for="feedback-website">Сайт</label>
+        <input id="feedback-website" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button class="btn btn--primary btn--block" type="submit">
+        <span>Отправить сообщение</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+      </button>
+      <p class="form-note">Отправляя форму, вы подтверждаете, что вам исполнилось 18 лет.</p>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container cta-band__inner" data-reveal>
+    <div>
+      <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> Начните с одного дня</p>
+      <h2>Утром — пять минут. Врачу — понятная картина. Вам — чуть больше контроля.</h2>
+    </div>
+    <a class="btn btn--light btn--lg" href="/cabinet">Создать дневник <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

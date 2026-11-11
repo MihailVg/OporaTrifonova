@@ -1,0 +1,27 @@
+<header class="minimal-header">
+  <div class="container minimal-header__inner">
+    <a class="brand brand--small" href="/" aria-label="<%= site.name %> — на главную">
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="12" fill="currentColor"/>
+        <path d="M11 25.5c0-5.8 4.2-9.5 9-9.5s9 3.7 9 9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M20 16V9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M20 13.2c-2.5 0-4.2-1.7-4.2-4.2 2.5 0 4.2 1.7 4.2 4.2Z" fill="#A9C2B4"/>
+        <circle cx="20" cy="27" r="2.2" fill="#E8B7A5"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">Опора</span>
+      </span>
+    </a>
+    <div class="minimal-header__actions">
+      <a class="minimal-header__back" href="<%= typeof backHref !== 'undefined' ? backHref : '/cabinet' %>">
+        <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg>
+        <%= typeof backLabel !== 'undefined' ? backLabel : 'В кабинет' %>
+      </a>
+      <a class="emergency-chip" href="tel:103">
+        <span class="status-dot" aria-hidden="true"></span> 103 / 112
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="site-main site-main--minimal">

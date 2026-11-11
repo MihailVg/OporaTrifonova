@@ -1,0 +1,329 @@
+<%- include('../partials/head') %>
+
+<main id="main" class="doctor-main">
+  <section class="doctor-login" data-doctor-login>
+    <div class="doctor-login__aside">
+      <a class="brand brand--light" href="/" aria-label="<%= site.name %> — на главную">
+        <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="12" fill="currentColor"/>
+          <path d="M11 25.5c0-5.8 4.2-9.5 9-9.5s9 3.7 9 9.5" fill="none" stroke="#173E36" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M20 16V9.5" fill="none" stroke="#173E36" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M20 13.2c-2.5 0-4.2-1.7-4.2-4.2 2.5 0 4.2 1.7 4.2 4.2Z" fill="#173E36"/>
+          <circle cx="20" cy="27" r="2.2" fill="#C8523F"/>
+        </svg>
+        <span class="brand__text">
+          <span class="brand__name">Опора</span>
+          <span class="brand__tag">кабинет врача</span>
+        </span>
+      </a>
+      <div class="doctor-login__aside-copy">
+        <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> Рабочее пространство</p>
+        <h1>Динамика пациентов — в одном месте.</h1>
+        <p>Ежедневные записи, боль, сон и эффективность лечения. Тревожные сигналы приходят в Telegram и остаются в истории.</p>
+        <ul class="check-list check-list--light">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Графики и история по каждому пациенту</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Сигналы с именем и уровнем боли</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Выгрузка данных в CSV</li>
+        </ul>
+      </div>
+      <div class="doctor-login__aside-foot">
+        <span class="status-dot" aria-hidden="true"></span>
+        <p>Доступ защищён паролем. Не передавайте его третьим лицам.</p>
+      </div>
+    </div>
+
+    <div class="doctor-login__card">
+      <p class="eyebrow"><span class="eyebrow__dot"></span> Вход для врача</p>
+      <h2>Кабинет врача</h2>
+      <p class="doctor-login__lead">Введите пароль, чтобы открыть панель. Сессия действует 12 часов.</p>
+      <form class="auth-form" data-doctor-login-form novalidate>
+        <div class="field">
+          <label class="field__label" for="doctor-password">Пароль</label>
+          <div class="password-field">
+            <input class="input" id="doctor-password" name="password" type="password" autocomplete="current-password" maxlength="200" required data-doctor-password>
+            <button class="icon-button" type="button" data-toggle-password aria-label="Показать пароль">
+              <svg class="icon" aria-hidden="true"><use href="#i-eye"></use></svg>
+            </button>
+          </div>
+          <p class="field__error" data-error-for="password"></p>
+        </div>
+        <button class="btn btn--primary btn--block" type="submit">
+          <span>Войти</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </button>
+        <div class="form-status" data-doctor-login-status role="status"></div>
+      </form>
+      <div class="doctor-login__hint">
+        <svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg>
+        <p>Пароль задаётся в переменной окружения <code>DOCTOR_PASSWORD</code>. В демо-версии — смотрите README.</p>
+      </div>
+      <a class="text-link doctor-login__back" href="/">
+        <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg> На сайт
+      </a>
+    </div>
+  </section>
+
+  <section class="doctor-app" data-doctor-dashboard hidden>
+    <header class="doctor-topbar">
+      <div class="doctor-topbar__inner">
+        <a class="brand brand--small" href="/" aria-label="Опора — на главную">
+          <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+            <rect width="40" height="40" rx="12" fill="currentColor"/>
+            <path d="M11 25.5c0-5.8 4.2-9.5 9-9.5s9 3.7 9 9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M20 16V9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M20 13.2c-2.5 0-4.2-1.7-4.2-4.2 2.5 0 4.2 1.7 4.2 4.2Z" fill="#A9C2B4"/>
+            <circle cx="20" cy="27" r="2.2" fill="#E8B7A5"/>
+          </svg>
+          <span class="brand__text"><span class="brand__name">Опора</span><span class="brand__tag">кабинет врача</span></span>
+        </a>
+
+        <nav class="doctor-tabs" aria-label="Разделы кабинета" data-doctor-tabs>
+          <button class="doctor-tab is-active" type="button" data-doctor-tab="overview">Обзор</button>
+          <button class="doctor-tab" type="button" data-doctor-tab="patients">Пациенты</button>
+          <button class="doctor-tab" type="button" data-doctor-tab="alerts">Сигналы <span class="tab-count" data-alerts-count hidden>0</span></button>
+          <button class="doctor-tab" type="button" data-doctor-tab="settings">Настройки</button>
+        </nav>
+
+        <div class="doctor-topbar__actions">
+          <span class="doctor-date" data-doctor-date>—</span>
+          <button class="icon-button icon-button--bordered" type="button" data-refresh aria-label="Обновить данные">
+            <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg>
+          </button>
+          <button class="btn btn--ghost btn--sm" type="button" data-doctor-logout>
+            <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg> <span>Выйти</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="doctor-content">
+      <div class="doctor-loading" data-dashboard-loading aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span> Загружаем данные…
+      </div>
+
+      <section class="doctor-panel is-active" data-doctor-panel="overview" hidden>
+        <div class="doctor-panel__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Обзор</p>
+            <h1>Здравствуйте, <%= site.doctor.greeting %></h1>
+            <p class="doctor-panel__sub">Вот что происходит с пациентами за последние две недели.</p>
+          </div>
+          <div class="doctor-panel__status" data-overview-updated>—</div>
+        </div>
+
+        <div class="stat-grid">
+          <article class="stat-card">
+            <span class="stat-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
+            <span class="stat-card__label">Пациентов</span>
+            <strong class="stat-card__value" data-stat="patients">—</strong>
+            <span class="stat-card__hint">в программе</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"></use></svg></span>
+            <span class="stat-card__label">Записей сегодня</span>
+            <strong class="stat-card__value" data-stat="today">—</strong>
+            <span class="stat-card__hint">дневник за день</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg></span>
+            <span class="stat-card__label">Средняя боль</span>
+            <strong class="stat-card__value" data-stat="avg">—</strong>
+            <span class="stat-card__hint">за 7 дней, 0–10</span>
+          </article>
+          <article class="stat-card stat-card--alert">
+            <span class="stat-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg></span>
+            <span class="stat-card__label">Новые сигналы</span>
+            <strong class="stat-card__value" data-stat="alerts">—</strong>
+            <span class="stat-card__hint">требуют внимания</span>
+          </article>
+        </div>
+
+        <div class="doctor-grid doctor-grid--wide">
+          <article class="card doctor-chart-card">
+            <header class="chart-card__head">
+              <div>
+                <p class="eyebrow"><span class="eyebrow__dot"></span> Динамика</p>
+                <h2>Средняя боль по дням</h2>
+              </div>
+              <span class="pill pill--ghost">14 дней</span>
+            </header>
+            <div class="chart-box chart-box--doctor">
+              <svg class="chart-svg" data-overview-chart role="img" aria-label="Средняя боль по дням за 14 дней"></svg>
+              <div class="chart-empty" data-overview-chart-empty hidden>
+                <span class="chart-empty__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg></span>
+                <p>Пока нет записей. Как только пациенты начнут заполнять дневник, здесь появится динамика.</p>
+              </div>
+            </div>
+            <div class="chart-legend">
+              <span><i class="legend-dot legend-dot--coral"></i> Средняя боль</span>
+              <span><i class="legend-dot legend-dot--sage"></i> Максимальная</span>
+            </div>
+          </article>
+
+          <article class="card doctor-alerts-card">
+            <header class="chart-card__head">
+              <div>
+                <p class="eyebrow"><span class="eyebrow__dot"></span> Сигналы</p>
+                <h2>Последние</h2>
+              </div>
+              <button class="text-link text-link--small" type="button" data-doctor-tab="alerts">Все <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+            </header>
+            <div class="alert-list alert-list--compact" data-overview-alerts>
+              <div class="skeleton skeleton--row"></div>
+              <div class="skeleton skeleton--row"></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="doctor-grid">
+          <article class="card">
+            <header class="chart-card__head">
+              <div>
+                <p class="eyebrow"><span class="eyebrow__dot"></span> Внимание</p>
+                <h2>Требуют внимания</h2>
+              </div>
+              <button class="text-link text-link--small" type="button" data-doctor-tab="patients">Все пациенты <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+            </header>
+            <div class="attention-list" data-attention-list>
+              <div class="skeleton skeleton--row"></div>
+              <div class="skeleton skeleton--row"></div>
+              <div class="skeleton skeleton--row"></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <header class="chart-card__head">
+              <div>
+                <p class="eyebrow"><span class="eyebrow__dot"></span> Обратная связь</p>
+                <h2>Сообщения с сайта</h2>
+              </div>
+            </header>
+            <div class="feedback-list" data-feedback-list>
+              <div class="skeleton skeleton--row"></div>
+              <div class="skeleton skeleton--row"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="doctor-panel" data-doctor-panel="patients" hidden>
+        <div class="doctor-panel__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Пациенты</p>
+            <h1>Все пациенты</h1>
+            <p class="doctor-panel__sub">Нажмите на строку, чтобы открыть историю и графики.</p>
+          </div>
+          <label class="search-field">
+            <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
+            <input type="search" placeholder="Имя или код" aria-label="Поиск пациента" data-patient-search>
+          </label>
+        </div>
+
+        <div class="card table-card">
+          <div class="table-wrap">
+            <table class="patients-table">
+              <thead>
+                <tr>
+                  <th>Пациент</th>
+                  <th>Код</th>
+                  <th>Последняя запись</th>
+                  <th>Боль</th>
+                  <th>Динамика</th>
+                  <th>Статус</th>
+                  <th><span class="sr-only">Открыть</span></th>
+                </tr>
+              </thead>
+              <tbody data-patients-body>
+                <tr><td colspan="7"><div class="skeleton skeleton--row"></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="empty-state" data-patients-empty hidden>
+            <span class="empty-state__icon"><svg class="icon" aria-hidden="true"><use href="#i-user"></use></svg></span>
+            <h3>Пока нет пациентов</h3>
+            <p>Зарегистрируйте первую пациентку или загрузите демо-данные в настройках.</p>
+            <button class="btn btn--secondary btn--sm" type="button" data-go-settings>В настройки</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="doctor-panel" data-doctor-panel="alerts" hidden>
+        <div class="doctor-panel__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Тревожные сигналы</p>
+            <h1>Сигналы пациентов</h1>
+            <p class="doctor-panel__sub">Сигнал сохраняется всегда, даже если Telegram недоступен. Отметьте его обработанным после связи.</p>
+          </div>
+          <div class="segmented segmented--filter" data-alert-filter>
+            <label class="segment"><input type="radio" name="alert-filter" value="all" checked><span>Все</span></label>
+            <label class="segment"><input type="radio" name="alert-filter" value="new"><span>Новые</span></label>
+          </div>
+        </div>
+        <div class="alert-list" data-alerts-list>
+          <div class="skeleton skeleton--row"></div>
+          <div class="skeleton skeleton--row"></div>
+        </div>
+      </section>
+
+      <section class="doctor-panel" data-doctor-panel="settings" hidden>
+        <div class="doctor-panel__head">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot"></span> Настройки</p>
+            <h1>Сервис и данные</h1>
+            <p class="doctor-panel__sub">Проверка уведомлений, демо-данные и выгрузка.</p>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+          <article class="card settings-card">
+            <span class="settings-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg></span>
+            <h2>Telegram-уведомления</h2>
+            <p>Сигналы приходят в чат, указанный в <code>TELEGRAM_CHAT_ID</code>. Бот должен быть запущен получателем.</p>
+            <div class="settings-status" data-telegram-status>Проверяем…</div>
+            <button class="btn btn--secondary btn--sm" type="button" data-test-telegram>Отправить тестовое сообщение</button>
+            <p class="settings-card__fine">Если сообщение не приходит, проверьте токен, chat_id и что получатель нажал /start у бота.</p>
+          </article>
+
+          <% if (isDemo) { %>
+          <article class="card settings-card">
+            <span class="settings-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg></span>
+            <h2>Демо-данные</h2>
+            <p>Создаст демонстрационную пациентку Марию Демидову с историей за три недели и двумя сигналами. При повторной загрузке демо-история пересоздаётся.</p>
+            <button class="btn btn--secondary btn--sm" type="button" data-demo-seed>Загрузить демо-данные</button>
+            <p class="settings-card__code" data-demo-code hidden></p>
+          </article>
+          <% } %>
+
+          <article class="card settings-card">
+            <span class="settings-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-download"></use></svg></span>
+            <h2>Выгрузка данных</h2>
+            <p>CSV со всеми записями дневника: боль, сон, препараты и примечания. Подходит для анализа в Excel.</p>
+            <button class="btn btn--secondary btn--sm" type="button" data-export-csv>Скачать CSV</button>
+          </article>
+
+          <article class="card settings-card">
+            <span class="settings-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg></span>
+            <h2>Хранилище и доступ</h2>
+            <p>База данных: <strong data-db-kind>—</strong>. Пароль врача хранится только в переменной окружения. Сессия — 12 часов.</p>
+            <p class="settings-card__fine">Для реальной работы с персональными данными используйте хостинг и базу в РФ, уведомление Роскомнадзора и согласия пациентов. Подробнее — в <code>DEPLOY.md</code>.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <dialog class="modal modal--wide" data-patient-dialog aria-labelledby="patient-dialog-title">
+    <div class="modal__head">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot"></span> Карта пациента</p>
+        <h2 id="patient-dialog-title">Пациент</h2>
+      </div>
+      <button class="icon-button" type="button" data-close-dialog aria-label="Закрыть">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+    <div class="modal__body" data-patient-dialog-body></div>
+  </dialog>
+</main>
+
+<%- include('../partials/footer') %>

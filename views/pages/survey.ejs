@@ -1,0 +1,293 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header-minimal', { backHref: '/cabinet', backLabel: 'В кабинет' }) %>
+
+<div class="survey">
+  <div class="container survey__container">
+    <header class="survey-head" data-reveal>
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot"></span> Утренний дневник</p>
+        <h1>Как вы себя чувствуете сегодня?</h1>
+        <p class="survey-head__date" data-survey-date>Загрузка…</p>
+      </div>
+      <div class="survey-progress" aria-label="Прогресс заполнения">
+        <div class="progress"><span class="progress__bar" data-progress-bar></span></div>
+        <p><span data-step-label>Шаг 1 из 3</span><span class="survey-draft" data-draft-status></span></p>
+      </div>
+    </header>
+
+    <div class="survey-banner" data-survey-existing hidden>
+      <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+      <p>Вы уже заполняли дневник сегодня. Если что-то изменилось, можно обновить запись — старая версия заменится.</p>
+    </div>
+
+    <form class="survey-form card" data-survey-form novalidate>
+      <section class="form-step is-active" data-step="1">
+        <div class="form-step__head">
+          <span class="step-badge">01</span>
+          <div>
+            <h2>Боль</h2>
+            <p>Оцените боль за прошедшие сутки. Ориентируйтесь на свои ощущения, а не на «норму».</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="pain-avg">Средняя боль за сутки</label>
+          <div class="range-field">
+            <div class="range-value"><strong data-range-value="painAvg">0</strong><span>/10</span></div>
+            <input class="range" id="pain-avg" name="painAvg" type="range" min="0" max="10" step="1" value="0" data-range data-output="painAvg">
+            <div class="range-labels"><span>Нет боли</span><span>Невыносимая</span></div>
+            <p class="range-descriptor" data-pain-descriptor>Нет боли</p>
+          </div>
+          <p class="field__error" data-error-for="painAvg"></p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="pain-max">Самая сильная боль за сутки</label>
+          <div class="range-field">
+            <div class="range-value"><strong data-range-value="painMax">0</strong><span>/10</span></div>
+            <input class="range" id="pain-max" name="painMax" type="range" min="0" max="10" step="1" value="0" data-range data-output="painMax">
+            <div class="range-labels"><span>Нет боли</span><span>Невыносимая</span></div>
+          </div>
+          <p class="field__hint">Если боль менялась в течение дня, отметьте самый сильный момент.</p>
+          <p class="field__error" data-error-for="painMax"></p>
+        </div>
+
+        <fieldset class="field">
+          <legend class="field__label">Где болело? <span class="field__optional">можно выбрать несколько</span></legend>
+          <div class="chips" data-chips="locations">
+            <% options.painLocations.forEach((item) => { %>
+              <label class="chip"><input type="checkbox" name="locations" value="<%= item.value %>"><span><%= item.label %></span></label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="locations"></p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="field__label">Какая была боль? <span class="field__optional">можно выбрать несколько</span></legend>
+          <div class="chips" data-chips="characters">
+            <% options.painCharacters.forEach((item) => { %>
+              <label class="chip"><input type="checkbox" name="characters" value="<%= item.value %>"><span><%= item.label %></span></label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="characters"></p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="field__label">Просыпались ли вы ночью из-за боли?</legend>
+          <div class="radio-cards radio-cards--four">
+            <% options.nightWake.forEach((item) => { %>
+              <label class="radio-card">
+                <input type="radio" name="nightWake" value="<%= item.value %>" <%= item.value === 'none' ? 'checked' : '' %>>
+                <span><%= item.label %></span>
+              </label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="nightWake"></p>
+        </fieldset>
+      </section>
+
+      <section class="form-step" data-step="2" hidden>
+        <div class="form-step__head">
+          <span class="step-badge">02</span>
+          <div>
+            <h2>Симптомы и день</h2>
+            <p>Отметьте, как рука и плечо чувствовали себя вчера. Это поможет врачу оценить динамику.</p>
+          </div>
+        </div>
+
+        <fieldset class="field">
+          <legend class="field__label">Онемение в руке</legend>
+          <div class="segmented segmented--four">
+            <% options.symptomScale.forEach((item) => { %>
+              <label class="segment"><input type="radio" name="numbness" value="<%= item.value %>" <%= item.value === 0 ? 'checked' : '' %>><span><%= item.label %></span></label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="numbness"></p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="field__label">Слабость в руке</legend>
+          <div class="segmented segmented--four">
+            <% options.symptomScale.forEach((item) => { %>
+              <label class="segment"><input type="radio" name="weakness" value="<%= item.value %>" <%= item.value === 0 ? 'checked' : '' %>><span><%= item.label %></span></label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="weakness"></p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="field__label">Ограничение движений в плече</legend>
+          <div class="segmented segmented--four">
+            <% options.mobilityScale.forEach((item) => { %>
+              <label class="segment"><input type="radio" name="mobility" value="<%= item.value %>" <%= item.value === 0 ? 'checked' : '' %>><span><%= item.label %></span></label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="mobility"></p>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend class="field__label">Отёк руки</legend>
+          <div class="segmented segmented--four">
+            <% options.edemaScale.forEach((item) => { %>
+              <label class="segment"><input type="radio" name="edema" value="<%= item.value %>" <%= item.value === 0 ? 'checked' : '' %>><span><%= item.label %></span></label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="edema"></p>
+        </fieldset>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="field__label" for="sleep-hours">Сколько вы спали?</label>
+            <div class="input-with-suffix">
+              <input class="input" id="sleep-hours" name="sleepHours" type="number" min="0" max="14" step="0.5" value="7" inputmode="decimal">
+              <span>часов</span>
+            </div>
+            <p class="field__error" data-error-for="sleepHours"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="sleep-quality">Качество сна</label>
+            <div class="range-field range-field--compact">
+              <div class="range-value range-value--small"><strong data-range-value="sleepQuality">6</strong><span>/10</span></div>
+              <input class="range" id="sleep-quality" name="sleepQuality" type="range" min="0" max="10" step="1" value="6" data-range data-output="sleepQuality">
+            </div>
+            <p class="field__error" data-error-for="sleepQuality"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="mood">Настроение за сутки</label>
+          <div class="range-field">
+            <div class="range-value"><strong data-range-value="mood">6</strong><span>/10</span></div>
+            <input class="range" id="mood" name="mood" type="range" min="0" max="10" step="1" value="6" data-range data-output="mood">
+            <div class="range-labels"><span>Тяжело</span><span>Спокойно</span></div>
+          </div>
+          <p class="field__error" data-error-for="mood"></p>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="activity">Бытовая активность</label>
+          <div class="range-field">
+            <div class="range-value"><strong data-range-value="activity">6</strong><span>/10</span></div>
+            <input class="range" id="activity" name="activity" type="range" min="0" max="10" step="1" value="6" data-range data-output="activity">
+            <div class="range-labels"><span>Трудно всё</span><span>Всё получается</span></div>
+          </div>
+          <p class="field__error" data-error-for="activity"></p>
+        </div>
+      </section>
+
+      <section class="form-step" data-step="3" hidden>
+        <div class="form-step__head">
+          <span class="step-badge">03</span>
+          <div>
+            <h2>Лечение</h2>
+            <p>Что вы принимали и как это подействовало. Если не принимали — так и отметьте, это важно.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="med-name">Основное обезболивающее за сутки</label>
+          <select class="input select" id="med-name" name="medName" data-med-select>
+            <% options.medOptions.forEach((item) => { %>
+              <option value="<%= item.value %>" <%= item.value === 'none' ? 'selected' : '' %>><%= item.label %></option>
+            <% }) %>
+          </select>
+          <p class="field__error" data-error-for="medName"></p>
+        </div>
+
+        <div class="med-fields" data-med-fields hidden>
+          <div class="field-row">
+            <div class="field">
+              <label class="field__label" for="med-dose">Доза <span class="field__optional">если помните</span></label>
+              <input class="input" id="med-dose" name="medDose" type="text" maxlength="80" placeholder="Например, 75 мг">
+              <p class="field__error" data-error-for="medDose"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="med-times">Сколько раз принимали?</label>
+              <div class="input-with-suffix">
+                <input class="input" id="med-times" name="medTimes" type="number" min="0" max="20" step="1" value="1" inputmode="numeric">
+                <span>раз</span>
+              </div>
+              <p class="field__error" data-error-for="medTimes"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="relief">Насколько препарат помог?</label>
+            <div class="range-field">
+              <div class="range-value"><strong data-range-value="relief">5</strong><span>/10</span></div>
+              <input class="range" id="relief" name="relief" type="range" min="0" max="10" step="1" value="5" data-range data-output="relief">
+              <div class="range-labels"><span>Совсем нет</span><span>Полностью</span></div>
+            </div>
+            <p class="field__error" data-error-for="relief"></p>
+          </div>
+
+          <fieldset class="field">
+            <legend class="field__label">Были ли нежелательные эффекты?</legend>
+            <div class="chips" data-chips="sideEffects">
+              <% options.sideEffectOptions.forEach((item) => { %>
+                <label class="chip"><input type="checkbox" name="sideEffects" value="<%= item.value %>" <%= item.value === 'none' ? 'checked' : '' %>><span><%= item.label %></span></label>
+              <% }) %>
+            </div>
+            <p class="field__error" data-error-for="sideEffects"></p>
+          </fieldset>
+        </div>
+
+        <fieldset class="field">
+          <legend class="field__label">Получалось ли принимать назначенное лечение?</legend>
+          <div class="radio-cards radio-cards--two">
+            <% options.adherenceOptions.forEach((item) => { %>
+              <label class="radio-card">
+                <input type="radio" name="adherence" value="<%= item.value %>">
+                <span><%= item.label %></span>
+              </label>
+            <% }) %>
+          </div>
+          <p class="field__error" data-error-for="adherence"></p>
+        </fieldset>
+
+        <div class="field">
+          <label class="field__label" for="note">Что ещё важно знать врачу? <span class="field__optional">необязательно</span></label>
+          <textarea class="input textarea" id="note" name="note" rows="4" maxlength="1000" placeholder="Например: боль усилилась после прогулки, плохо спала, появился отёк"></textarea>
+          <p class="field__hint">Не указывайте лишние персональные данные — только то, что важно для лечения.</p>
+          <p class="field__error" data-error-for="note"></p>
+        </div>
+      </section>
+
+      <div class="form-status" data-form-status role="status"></div>
+
+      <div class="survey-nav">
+        <button class="btn btn--ghost" type="button" data-prev hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"></use></svg> Назад
+        </button>
+        <span class="survey-nav__spacer"></span>
+        <button class="btn btn--primary" type="button" data-next>
+          Далее <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </button>
+        <button class="btn btn--primary" type="submit" data-submit hidden>
+          Сохранить дневник <svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg>
+        </button>
+      </div>
+      <p class="survey-save-note" data-save-note>Черновик сохраняется на этом устройстве автоматически.</p>
+    </form>
+
+    <section class="survey-success card" data-survey-success hidden aria-live="polite">
+      <div class="survey-success__icon"><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg></div>
+      <p class="eyebrow"><span class="eyebrow__dot"></span> Готово</p>
+      <h2>Дневник сохранён</h2>
+      <p data-success-message>Спасибо. Врач увидит запись в кабинете.</p>
+      <div class="survey-success__chart">
+        <p class="survey-success__chart-title">Ваша боль за последние дни</p>
+        <svg class="chart-svg" data-success-chart role="img" aria-label="График боли"></svg>
+      </div>
+      <div class="survey-success__actions">
+        <a class="btn btn--primary" href="/cabinet">Вернуться в кабинет <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <button class="btn btn--coral" type="button" data-open-alarm>
+          <svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg> Сильная боль
+        </button>
+      </div>
+      <p class="survey-success__note">Если боль нестерпима или состояние ухудшается — звоните <a href="tel:103">103</a> или <a href="tel:112">112</a>.</p>
+    </section>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

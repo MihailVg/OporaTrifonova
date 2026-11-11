@@ -1,0 +1,11 @@
+node_modules
+.npm-cache
+.git
+.env
+.env.*
+data
+docs
+tests
+scripts
+*.fixed
+npm-debug.log*

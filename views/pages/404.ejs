@@ -1,0 +1,18 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<section class="error-page">
+  <div class="container error-page__inner">
+    <p class="error-page__code">404</p>
+    <p class="eyebrow"><span class="eyebrow__dot"></span> Страница не найдена</p>
+    <h1>Кажется, этой страницы нет.</h1>
+    <p class="error-page__lead">Возможно, ссылка устарела или в адресе есть опечатка. Вернитесь на главную или откройте дневник.</p>
+    <div class="error-page__actions">
+      <a class="btn btn--primary" href="/">На главную <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      <a class="btn btn--ghost" href="/cabinet">В личный кабинет</a>
+    </div>
+    <p class="error-page__help">Если нужна срочная помощь — <a href="tel:103">103</a> или <a href="tel:112">112</a>.</p>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: opora-clinic
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Europe/Kaliningrad
+      - key: ALARM_COOLDOWN_SEC
+        value: "120"
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DOCTOR_PASSWORD
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: TELEGRAM_CHAT_ID
+        sync: false

@@ -1,0 +1,117 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header-minimal', { backHref: '/', backLabel: 'На главную' }) %>
+
+<div class="auth-layout">
+  <aside class="auth-aside" data-reveal>
+    <div class="auth-aside__glow"></div>
+    <p class="eyebrow eyebrow--light"><span class="eyebrow__dot"></span> Личный кабинет</p>
+    <h1>Ваш дневник — это не отчёт, а инструмент.</h1>
+    <p class="auth-aside__lead">Пять минут утром, чтобы врач видел динамику, а вы — что действительно помогает.</p>
+    <ul class="check-list check-list--light auth-aside__list">
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Одна запись в день, можно с телефона</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Графики боли, сна и лечения</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"></use></svg> Тревожная кнопка для сильной боли</li>
+    </ul>
+    <blockquote class="auth-aside__quote">«Боль — это симптом, с которым можно работать. Начните с того, чтобы её описать».</blockquote>
+    <div class="auth-aside__doctor">
+      <span class="avatar-mini">АМ</span>
+      <span><strong><%= site.doctor.name %></strong><small><%= site.doctor.role %></small></span>
+    </div>
+    <a class="auth-aside__tg" href="<%= site.contacts.telegramUrl %>" target="_blank" rel="noopener noreferrer">
+      <svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg> @<%= site.contacts.telegram %>
+    </a>
+  </aside>
+
+  <div class="auth-main">
+    <div class="auth-card" data-reveal>
+      <div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+        <button class="auth-tab is-active" type="button" role="tab" id="tab-login" aria-selected="true" aria-controls="panel-login" data-auth-tab="login">Вход по коду</button>
+        <button class="auth-tab" type="button" role="tab" id="tab-register" aria-selected="false" aria-controls="panel-register" tabindex="-1" data-auth-tab="register">Новый дневник</button>
+      </div>
+
+      <section class="auth-panel" id="panel-login" role="tabpanel" aria-labelledby="tab-login" data-auth-panel="login">
+        <div class="auth-panel__head">
+          <p class="eyebrow"><span class="eyebrow__dot"></span> С возвращением</p>
+          <h2>Войти в дневник</h2>
+          <p>Введите код пациента, который выдаётся при регистрации. Он хранится в вашем кабинете.</p>
+        </div>
+
+        <form class="auth-form" data-login-form novalidate>
+          <div class="field">
+            <label class="field__label" for="login-code">Код доступа</label>
+            <input class="input input--code" id="login-code" name="code" type="text" inputmode="text" autocomplete="one-time-code" autocapitalize="characters" spellcheck="false" maxlength="24" placeholder="OP-XXXX-XXXX" required>
+            <p class="field__hint">Например, OP-7K3Q-9X2M. Регистр и пробелы не важны.</p>
+            <p class="field__error" data-error-for="code"></p>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit">
+            <span>Войти</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </button>
+          <div class="form-status" data-form-status role="status"></div>
+        </form>
+
+        <div class="auth-switch">
+          <p>Первый раз здесь?</p>
+          <button class="text-link" type="button" data-auth-switch="register">Создать дневник <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+        </div>
+
+        <div class="auth-help">
+          <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+          <p>Потеряли код? Создайте новый дневник — старые записи останутся у врача, но восстановить к ним доступ можно только через врача.</p>
+        </div>
+      </section>
+
+      <section class="auth-panel" id="panel-register" role="tabpanel" aria-labelledby="tab-register" data-auth-panel="register" hidden>
+        <div class="auth-panel__head">
+          <p class="eyebrow"><span class="eyebrow__dot"></span> Начните сегодня</p>
+          <h2>Создать дневник</h2>
+          <p>Это займёт меньше минуты. После регистрации вы получите код доступа — сохраните его.</p>
+        </div>
+
+        <form class="auth-form" data-register-form novalidate>
+          <div class="field">
+            <label class="field__label" for="register-name">Имя и фамилия</label>
+            <input class="input" id="register-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Как к вам обращаться" required>
+            <p class="field__error" data-error-for="name"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="register-phone">Телефон <span class="field__optional">необязательно</span></label>
+            <input class="input" id="register-phone" name="phone" type="tel" autocomplete="tel" maxlength="30" placeholder="+7 (___) ___-__-__">
+            <p class="field__hint">Нужен только для связи врача с вами. Можно не указывать.</p>
+            <p class="field__error" data-error-for="phone"></p>
+          </div>
+
+          <div class="auth-note">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"></use></svg>
+            <p>Дневник создан для пациенток с постмастэктомической нейропатией и плексопатией. Данные о здоровье относятся к особой категории — мы обрабатываем их только для ведения дневника и связи с врачом.</p>
+          </div>
+
+          <label class="checkbox checkbox--consent">
+            <input type="checkbox" name="consent" required>
+            <span>Даю согласие на обработку персональных данных и данных о здоровье, принимаю <a href="/privacy" target="_blank" rel="noopener">политику</a> и <a href="/consent" target="_blank" rel="noopener">согласие</a>. Мне исполнилось 18 лет.</span>
+          </label>
+          <p class="field__error" data-error-for="consent"></p>
+
+          <button class="btn btn--primary btn--block" type="submit">
+            <span>Создать дневник</span>
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </button>
+          <div class="form-status" data-form-status role="status"></div>
+        </form>
+
+        <div class="auth-switch">
+          <p>Уже есть код?</p>
+          <button class="text-link" type="button" data-auth-switch="login">Войти <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg></button>
+        </div>
+      </section>
+    </div>
+
+    <p class="auth-legal">
+      Нажимая кнопку, вы соглашаетесь с <a href="/terms">пользовательским соглашением</a>. Это учебный демонстрационный проект, а не медицинская организация.
+    </p>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

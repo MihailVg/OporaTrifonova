@@ -1,0 +1,94 @@
+</main>
+
+<% if (minimal) { %>
+  <footer class="minimal-footer">
+    <div class="container minimal-footer__inner">
+      <p><strong>Опора</strong> · <%= page === 'doctor' ? 'кабинет врача' : 'дневник боли' %></p>
+      <p>Срочная помощь — <a href="tel:103">103</a> или <a href="tel:112">112</a></p>
+      <% if (isDemo) { %><p class="minimal-footer__demo">Учебный демонстрационный проект</p><% } %>
+    </div>
+  </footer>
+<% } else { %>
+  <footer class="footer" id="contacts">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="brand brand--footer" href="/" aria-label="<%= site.name %> — на главную">
+            <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+              <rect width="40" height="40" rx="12" fill="currentColor"/>
+              <path d="M11 25.5c0-5.8 4.2-9.5 9-9.5s9 3.7 9 9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M20 16V9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M20 13.2c-2.5 0-4.2-1.7-4.2-4.2 2.5 0 4.2 1.7 4.2 4.2Z" fill="#A9C2B4"/>
+              <circle cx="20" cy="27" r="2.2" fill="#E8B7A5"/>
+            </svg>
+            <span class="brand__text">
+              <span class="brand__name">Опора</span>
+              <span class="brand__tag">онлайн-поликлиника</span>
+            </span>
+          </a>
+          <p class="footer__lead">Помогаем пациенткам после мастэктомии жить без боли и одиночества: ежедневный дневник, понятная динамика и связь с врачом.</p>
+          <a class="footer__tg" href="<%= site.contacts.telegramUrl %>" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg>
+            @<%= site.contacts.telegram %>
+          </a>
+        </div>
+
+        <div class="footer__col">
+          <h2 class="footer__title">Разделы</h2>
+          <a href="/">Главная</a>
+          <a href="/info">О заболевании</a>
+          <a href="/cabinet">Дневник боли</a>
+          <a href="/doctor">Кабинет врача</a>
+        </div>
+
+        <div class="footer__col">
+          <h2 class="footer__title">Пациентам</h2>
+          <a href="/info#when">Когда звонить 103</a>
+          <a href="/info#treatment">Лечение и реабилитация</a>
+          <a href="/info#faq">Частые вопросы</a>
+          <a href="/#feedback">Задать вопрос</a>
+        </div>
+
+        <div class="footer__col footer__col--contacts">
+          <h2 class="footer__title">Связаться</h2>
+          <a class="footer__phone" href="tel:<%= site.contacts.phoneHref %>"><%= site.contacts.phone %></a>
+          <a href="mailto:<%= site.contacts.email %>"><%= site.contacts.email %></a>
+          <div class="footer__hours">
+            <% site.contacts.hours.forEach((item) => { %>
+              <span><%= item.days %></span><span><%= item.time %></span>
+            <% }) %>
+          </div>
+          <p class="footer__muted"><%= site.contacts.response %></p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <%= year %> «<%= site.name %>». Все права защищены.</p>
+        <nav class="footer__legal" aria-label="Правовая информация">
+          <a href="/privacy">Политика ПДн</a>
+          <a href="/consent">Согласие</a>
+          <a href="/terms">Соглашение</a>
+        </nav>
+        <p class="footer__emergency"><span class="status-dot" aria-hidden="true"></span> Экстренно: <a href="tel:103">103</a> · <a href="tel:112">112</a></p>
+      </div>
+
+      <p class="footer__disclaimer">
+        <% if (isDemo) { %>
+          <strong>Учебный демонстрационный проект.</strong> Сайт не является медицинской организацией и не оказывает медицинских услуг. Информация носит справочный характер и не заменяет консультацию врача. При угрозе жизни звоните 103 или 112.
+        <% } else { %>
+          Информация на сайте не заменяет консультацию врача. Имеются противопоказания, необходима консультация специалиста. При угрозе жизни звоните 103 или 112.
+        <% } %>
+      </p>
+    </div>
+  </footer>
+<% } %>
+
+<div id="toast-region" class="toast-region" role="status" aria-live="polite" aria-atomic="true"></div>
+<div id="alarm-root"></div>
+
+<script type="module" src="/js/common.js?v=<%= version %>"></script>
+<% if (Array.isArray(scripts)) { scripts.forEach((script) => { %>
+  <script type="module" src="<%= script %>?v=<%= version %>"></script>
+<% }) } %>
+</body>
+</html>

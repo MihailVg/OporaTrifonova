@@ -1,0 +1,17 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<section class="error-page">
+  <div class="container error-page__inner">
+    <p class="error-page__code">500</p>
+    <p class="eyebrow"><span class="eyebrow__dot"></span> Что-то пошло не так</p>
+    <h1>Страница временно недоступна.</h1>
+    <p class="error-page__lead">Мы уже видим ошибку. Попробуйте обновить страницу через минуту. Если вопрос срочный — звоните 103 или 112.</p>
+    <div class="error-page__actions">
+      <button class="btn btn--primary" type="button" data-reload>Обновить <svg class="icon" aria-hidden="true"><use href="#i-refresh"></use></svg></button>
+      <a class="btn btn--ghost" href="/">На главную</a>
+    </div>
+  </div>
+</section>
+
+<%- include('../partials/footer') %>

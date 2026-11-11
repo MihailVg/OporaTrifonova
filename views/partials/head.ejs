@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title %> — <%= site.name %></title>
+  <meta name="description" content="<%= description %>">
+  <% if (noindex) { %><meta name="robots" content="noindex, nofollow"><% } %>
+  <meta name="theme-color" content="#173E36">
+  <meta name="color-scheme" content="light">
+  <meta name="format-detection" content="telephone=no">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="<%= site.name %>">
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:description" content="<%= description %>">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.svg">
+  <link rel="preload" href="/fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/golos-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/lora-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/styles.css?v=<%= version %>">
+</head>
+<body class="<%= bodyClass %>" data-page="<%= page %>">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+  <noscript>
+    <div class="noscript">Для личного кабинета, дневника и тревожной кнопки нужен JavaScript. Информация о заболевании и контакты доступны без него.</div>
+  </noscript>
+  <%- include('icons') %>

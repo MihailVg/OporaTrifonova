@@ -1,0 +1,52 @@
+<div class="topbar">
+  <div class="container topbar__inner">
+    <p class="topbar__emergency">
+      <span class="status-dot" aria-hidden="true"></span>
+      Срочная помощь: <a href="tel:103">103</a><span aria-hidden="true">·</span><a href="tel:112">112</a>
+    </p>
+    <p class="topbar__note">Онлайн-поликлиника · <%= site.city %></p>
+  </div>
+</div>
+
+<header class="site-header" data-header>
+  <div class="container header__inner">
+    <a class="brand" href="/" aria-label="<%= site.name %> — на главную">
+      <svg class="brand__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect width="40" height="40" rx="12" fill="currentColor"/>
+        <path d="M11 25.5c0-5.8 4.2-9.5 9-9.5s9 3.7 9 9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M20 16V9.5" fill="none" stroke="#F7F3EA" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M20 13.2c-2.5 0-4.2-1.7-4.2-4.2 2.5 0 4.2 1.7 4.2 4.2Z" fill="#A9C2B4"/>
+        <circle cx="20" cy="27" r="2.2" fill="#E8B7A5"/>
+      </svg>
+      <span class="brand__text">
+        <span class="brand__name">Опора</span>
+        <span class="brand__tag">онлайн-поликлиника</span>
+      </span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
+      <a class="nav__link <%= page === 'home' ? 'is-active' : '' %>" href="/">Главная</a>
+      <a class="nav__link <%= page === 'info' ? 'is-active' : '' %>" href="/info">О заболевании</a>
+      <a class="nav__link <%= page === 'cabinet' || page === 'survey' ? 'is-active' : '' %>" href="/cabinet">Дневник</a>
+      <a class="nav__link" href="/#contacts">Контакты</a>
+      <a class="nav__mobile-cta btn btn--primary" href="/cabinet" data-patient-cta>Личный кабинет</a>
+      <div class="nav__mobile-note">
+        <a href="tel:103">103</a> · <a href="tel:112">112</a> — экстренная помощь
+      </div>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href="tel:<%= site.contacts.phoneHref %>">
+        <svg class="icon" aria-hidden="true"><use href="#i-phone"></use></svg>
+        <span><%= site.contacts.phone %></span>
+      </a>
+      <a class="btn btn--primary btn--sm header__cta" href="/cabinet" data-patient-cta>Личный кабинет</a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-controls="site-nav" aria-expanded="false" data-menu-toggle>
+        <svg class="icon menu-toggle__open" aria-hidden="true"><use href="#i-menu"></use></svg>
+        <svg class="icon menu-toggle__close" aria-hidden="true"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="site-main">

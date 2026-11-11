@@ -1,0 +1,141 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<div class="cabinet">
+  <div class="container">
+    <div class="cabinet-head" data-reveal>
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot"></span> Личный кабинет</p>
+        <h1>Здравствуйте, <span data-first-name>…</span></h1>
+        <p class="cabinet-head__sub"><span data-today-label>Сегодня</span> · <span data-patient-diagnosis><%= site.diagnosis %></span></p>
+      </div>
+      <div class="cabinet-head__actions">
+        <span class="streak-chip" data-streak hidden>
+          <svg class="icon" aria-hidden="true"><use href="#i-spark"></use></svg>
+          <span data-streak-text></span>
+        </span>
+        <a class="btn btn--primary" href="/survey">
+          <span data-survey-cta>Заполнить дневник</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="cabinet-grid">
+      <div class="cabinet-main">
+        <section class="today-card card" data-today-card aria-live="polite" aria-busy="true">
+          <div class="today-card__skeleton">
+            <div class="skeleton skeleton--eyebrow"></div>
+            <div class="skeleton skeleton--title"></div>
+            <div class="skeleton skeleton--line"></div>
+            <div class="skeleton skeleton--button"></div>
+          </div>
+        </section>
+
+        <section class="chart-card card" data-reveal>
+          <header class="chart-card__head">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> Динамика</p>
+              <h2>Боль за последние 14 дней</h2>
+            </div>
+            <span class="pill pill--ghost">0–10 баллов</span>
+          </header>
+          <div class="chart-stats">
+            <div><span>Средняя за 7 дней</span><strong data-chart-avg>—</strong></div>
+            <div><span>Изменение</span><strong data-chart-delta>—</strong></div>
+            <div><span>Записей</span><strong data-chart-count>—</strong></div>
+          </div>
+          <div class="chart-box" data-chart-box>
+            <svg class="chart-svg" data-chart role="img" aria-label="График боли по дням"></svg>
+            <div class="chart-empty" data-chart-empty hidden>
+              <span class="chart-empty__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"></use></svg></span>
+              <p>Пока нет данных для графика. Заполните дневник — здесь появится динамика.</p>
+            </div>
+          </div>
+          <div class="chart-legend">
+            <span><i class="legend-dot legend-dot--coral"></i> Средняя боль</span>
+            <span><i class="legend-dot legend-dot--sage"></i> Максимальная</span>
+          </div>
+        </section>
+
+        <section class="history-card card" data-reveal>
+          <header class="chart-card__head">
+            <div>
+              <p class="eyebrow"><span class="eyebrow__dot"></span> История</p>
+              <h2>Мои записи</h2>
+            </div>
+            <span class="pill pill--ghost" data-history-count>—</span>
+          </header>
+          <div class="history" data-history aria-live="polite">
+            <div class="history-skeleton">
+              <div class="skeleton skeleton--row"></div>
+              <div class="skeleton skeleton--row"></div>
+              <div class="skeleton skeleton--row"></div>
+            </div>
+          </div>
+          <p class="privacy-note"><svg class="icon" aria-hidden="true"><use href="#i-lock"></use></svg> Записи видны только вам и вашему врачу. Код доступа — ваш ключ к дневнику.</p>
+        </section>
+      </div>
+
+      <aside class="cabinet-side">
+        <section class="alarm-card" data-reveal>
+          <div class="alarm-card__pulse" aria-hidden="true"></div>
+          <span class="alarm-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-bell"></use></svg></span>
+          <h2>Сильная боль?</h2>
+          <p>Одно нажатие — врачу уйдёт сообщение с вашим именем и уровнем боли. Сигнал сохранится в истории.</p>
+          <button class="btn btn--coral btn--block" type="button" data-open-alarm>
+            Отправить сигнал
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+          </button>
+          <p class="alarm-card__last" data-last-alert>Сигналов пока не было.</p>
+          <p class="alarm-card__note">Не заменяет скорую помощь. При угрозе жизни — <a href="tel:103">103</a> или <a href="tel:112">112</a>.</p>
+        </section>
+
+        <section class="profile-card card" data-reveal>
+          <div class="profile-card__top">
+            <span class="profile-avatar" data-initials>—</span>
+            <div>
+              <h2 data-patient-name>Загрузка…</h2>
+              <p data-patient-phone>Телефон не указан</p>
+            </div>
+          </div>
+          <dl class="profile-data">
+            <div>
+              <dt>Код доступа</dt>
+              <dd>
+                <code data-patient-code>—</code>
+                <button class="icon-button" type="button" data-copy-code aria-label="Скопировать код">
+                  <svg class="icon" aria-hidden="true"><use href="#i-copy"></use></svg>
+                </button>
+              </dd>
+            </div>
+            <div>
+              <dt>Программа</dt>
+              <dd data-patient-diagnosis-full><%= site.diagnosis %></dd>
+            </div>
+            <div>
+              <dt>С нами с</dt>
+              <dd data-patient-since>—</dd>
+            </div>
+          </dl>
+          <div class="profile-card__actions">
+            <a class="btn btn--secondary btn--block" href="<%= site.contacts.telegramUrl %>" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true"><use href="#i-telegram"></use></svg> Написать врачу
+            </a>
+            <button class="btn btn--ghost btn--block" type="button" data-logout>
+              <svg class="icon" aria-hidden="true"><use href="#i-logout"></use></svg> Выйти
+            </button>
+          </div>
+          <p class="profile-card__legal"><a href="/privacy">Политика данных</a> · <a href="/consent">Согласие</a></p>
+        </section>
+
+        <section class="side-note" data-reveal>
+          <svg class="icon" aria-hidden="true"><use href="#i-info"></use></svg>
+          <p>Заполняйте дневник утром, до обезболивающего. Так динамика будет точнее.</p>
+        </section>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

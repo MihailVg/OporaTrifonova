@@ -1,0 +1,32 @@
+{
+  "name": "opora-clinic",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Онлайн-поликлиника «Опора» — дневник боли и тревожная кнопка для пациентов с постмастэктомической нейропатией и плексопатией",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "seed": "node server/seed.js",
+    "test": "node tests/api.test.js",
+    "test:ui": "node scripts/functional-test.mjs",
+    "test:telegram": "node server/test-telegram.js"
+  },
+  "engines": {
+    "node": ">=20.11"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.16",
+    "compression": "^1.8.2",
+    "dotenv": "^18.0.10",
+    "ejs": "^7.0.2",
+    "express": "^5.3.0",
+    "helmet": "^8.3.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.17.0",
+    "supertest": "^7.3.2"
+  }
+}
