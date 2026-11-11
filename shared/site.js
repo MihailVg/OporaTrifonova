@@ -18,10 +18,10 @@ export const site = {
   year: 2026,
 
   doctor: {
-    name: 'Анна Миронова',
-    fullName: 'Миронова Анна Сергеевна',
-    greeting: 'Анна Сергеевна',
-    initials: 'АМ',
+    name: 'Софья Трифонова',
+    fullName: 'Трифонова Софья Дмитриевна',
+    greeting: 'Софья Трифонова',
+    initials: 'СТ',
     role: 'врач-невролог, алголог',
     experience: '14 лет практики',
     education: 'Первый МГМУ им. И. М. Сеченова',
