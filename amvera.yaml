@@ -7,4 +7,5 @@ meta:
 run:
   command: npm start
   containerPort: 3000
+  servicePort: 80
   persistenceMount: /data
