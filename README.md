@@ -87,24 +87,28 @@ npm run test:telegram
 2. Получатель (**@Sson1ta**) должен открыть бота и нажать **/Start**. Бот не может написать первым.
 3. Узнайте числовой `chat_id`: напишите **@userinfobot** или откройте
    `https://api.telegram.org/bot<ТОКЕН>/getUpdates` после сообщения боту и найдите `"chat":{"id":...}`.
-4. Вставьте `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID` в `.env` (локально) или в Render.
+4. Вставьте `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID` в `.env` (локально) или в переменные хостинга.
 5. Откройте `/doctor` → «Настройки» → «Отправить тестовое сообщение».
 
 Подробная инструкция и разбор ошибок — в [DEPLOY.md](DEPLOY.md).
 
-## Деплой
+## Деплой (РФ)
 
-Самый быстрый бесплатный вариант для домашки — **Render** (Node) + при желании **Neon** (PostgreSQL). Пошагово, с учётом законодательства РФ: **[DEPLOY.md](DEPLOY.md)**.
+> **Render в России заблокирован** по IP-диапазону. Сайт на `onrender.com` не откроется у пользователей в РФ, даже если панель Render открыть через VPN. Для проекта, который должен работать в России, используйте российский хостинг.
+
+Самый близкий к Render вариант — **Amvera Cloud**: Git/файлы → сборка Node.js → HTTPS-адрес, серверы в РФ, оплата российской картой. Бесплатного тарифа навсегда нет: «Пробный» — около 170 ₽/30 дней, «Начальный» — около 290 ₽/30 дней. Для PGlite лучше «Начальный» (500 МБ RAM).
 
 Коротко:
 
-1. Залейте проект в приватный GitHub-репозиторий.
-2. Render → New → Blueprint (файл `render.yaml`) или New Web Service.
-3. Задайте `DOCTOR_PASSWORD`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`; `SESSION_SECRET` можно сгенерировать.
-4. Для сохранения данных добавьте `DATABASE_URL` от Neon и перезапустите сервис.
-5. Откройте `/doctor`, проверьте Telegram и загрузите демо-данные.
+1. Зарегистрируйтесь на [amvera.ru](https://amvera.ru) и создайте проект типа «Приложение».
+2. Загрузите код из GitHub или файлами; `amvera.yaml` уже лежит в корне проекта.
+3. Добавьте переменные: `DOCTOR_PASSWORD`, `SESSION_SECRET`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, `PGLITE_DIR=/data/pglite`, `PORT=3000`.
+4. Дождитесь сборки и откройте выданный HTTPS-адрес.
+5. `/doctor` → проверка Telegram → демо-данные.
 
-Бесплатный инстанс Render засыпает через 15 минут; первый запрос после сна может занять 30–60 секунд. Без `DATABASE_URL` данные на бесплатном хостинге могут сброситься при перезапуске — это ограничение демо-контура.
+Подробно, с тарифами, GitHub-вебхуком и постоянным диском: **[DEPLOY-AMVERA.md](DEPLOY-AMVERA.md)**.
+
+Если нужен строго 0 ₽: стабильного бесплатного Node.js-хостинга с базой и HTTPS в РФ сейчас нет. Теоретически можно попробовать QWINS Free (256 МБ RAM, без поддержки), но это лотерея; GitHub Pages не запустит сервер и кабинет врача. Render/Neon оставлены в [DEPLOY.md](DEPLOY.md) для зарубежного демо и как архив.
 
 ## Структура проекта
 
@@ -134,9 +138,11 @@ scripts/
   screenshot.mjs     скриншоты через headless Edge (опционально)
   functional-test.mjs сквозной браузерный сценарий (опционально)
 docs/screenshots/
-render.yaml      Blueprint для Render
+amvera.yaml      конфигурация для Amvera (РФ)
+render.yaml      Blueprint для Render (зарубежный вариант)
 Dockerfile       для VPS/Fly.io/РФ-хостинга
 DEPLOY.md        деплой и правовой разбор
+DEPLOY-AMVERA.md деплой в РФ на Amvera
 ```
 
 ## API (кратко)
@@ -156,7 +162,7 @@ DEPLOY.md        деплой и правовой разбор
 | `GET` | `/api/doctor/export.csv` | выгрузка дневников |
 | `POST` | `/api/doctor/test-telegram` | тест уведомлений |
 | `POST` | `/api/doctor/demo-seed` | демо-пациентка и история |
-| `GET` | `/api/health` | health-check для Render |
+| `GET` | `/api/health` | health-check для хостинга |
 
 Авторизация — `Authorization: Bearer <token>`. Токены пациентов хранятся в виде SHA-256 хешей, сессия врача подписана HMAC и живёт 12 часов.
 
